@@ -11,37 +11,32 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :product_user_id %>
-  </div>
-
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :product_name %>
+    <%= form.text_field :name, class: "form-control", id: :product_name %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :stock %>
-    <%= form.number_field :stock, id: :product_stock %>
+    <%= form.number_field :stock, class: "form-control", id: :product_stock %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :price %>
-    <%= form.text_field :price, id: :product_price %>
+    <%= form.text_field :price, class: "form-control", id: :product_price %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description, id: :product_description %>
+    <%= form.text_area :description, class: "form-control", id: :product_description %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :category_id %>
-    <%= form.text_field :category_id, id: :product_category_id %>
+    <%= form.select(:category_id, options_from_collection_for_select(@categories, 'id', 'name', @product.category_id), {}, {class: "form-control"}) %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit nil, class: "btn btn-primary" %>
   </div>
 <% end %>
