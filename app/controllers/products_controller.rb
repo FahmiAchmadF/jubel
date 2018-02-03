@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   load_and_authorize_resource
   before_action :set_product, only: [:show, :edit, :update, :destroy]
 
@@ -15,17 +16,19 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
+    @categories = Category.all
     @product = Product.new
   end
 
   # GET /products/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
+    @product = current_user.products.new(product_params)
 
     respond_to do |format|
       if @product.save
@@ -70,6 +73,6 @@ class ProductsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:user_id, :name, :stock, :price, :description, :category_id)
+      params.require(:product).permit(:name, :stock, :price, :description, :category_id)
     end
 end
