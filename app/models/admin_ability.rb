@@ -1,4 +1,4 @@
-class Ability
+class AdminAbility
   include CanCan::Ability
 
   def initialize(user)
@@ -9,9 +9,10 @@ class Ability
     end
   end
 
-  def admin; end
-
-  def user
-    can :manage, Product      
+  def admin
+    can :manage, :category
+    can :manage, :sub_category
   end
+
+  def user; end
 end

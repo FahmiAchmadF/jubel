@@ -1,9 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<h1>Sub Categories for <%= @category.name %></h1>
 
-<%= link_to 'Edit', edit_admin_category_path(@category) %> |
+<%= render "sub_categories" %>
+
+<%= link_to 'New Sub Category', new_admin_category_sub_category_path(@category.id) %> | 
 <%= link_to 'Back', admin_categories_path %>
