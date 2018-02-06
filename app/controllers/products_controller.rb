@@ -2,6 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :select_options, only: [:new, :edit]
 
   # GET /products
   # GET /products.json
@@ -16,13 +17,11 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @categories = Category.all
     @product = Product.new
   end
 
   # GET /products/1/edit
   def edit
-    @categories = Category.all
   end
 
   # POST /products
@@ -71,8 +70,19 @@ class ProductsController < ApplicationController
       @product = Product.find(params[:id])
     end
 
+    def select_options
+      @grouped_options = []
+      big_query = Category.includes(:sub_categories)
+      big_query.each do |category|
+        local_array = []
+        local_array << category.name
+        local_array << category.sub_categories.pluck(:name)
+        @grouped_options << local_array
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def product_params
-      params.require(:product).permit(:name, :stock, :price, :description, :category_id)
+      params.require(:product).permit(:name, :stock, :price, :description, :sub_categories => [])
     end
 end

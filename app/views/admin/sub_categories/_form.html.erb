@@ -1,0 +1,22 @@
+<%= form_with(model: [:admin, :category, sub_category], local: true) do |form| %>
+  <% if sub_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(sub_category.errors.count, "error") %> prohibited this sub_category from being saved:</h2>
+
+      <ul>
+      <% sub_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit nil, class: "btn btn-primary" %>
+  </div>
+<% end %>
