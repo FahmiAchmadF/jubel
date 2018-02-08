@@ -22,7 +22,7 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @product.description %>
+  <%= simple_format @product.description %>
 </p>
 
 <p>
@@ -34,29 +34,14 @@
   <strong>Photos</strong>
 </p>
 <% @product.product_photos.each do |photo| %>
-  <%= image_tag photo, class: "img-thumbnail", style: "width: 100px; height: 100px;", onclick: "showPrev(this)" %>
+  <a href="<%= photo %>" title="<%= photo.file.filename %>" onclick="showPrev(event, this)">
+    <%= image_tag photo.thumb, class: "img-thumbnail" %> <br>
+  </a>
 <% end %>
 
 <br>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <img id="imgPreview" src="" class="img-fluid"></img>
-      </div>
-      <div class="modal-footer">
-      </div>
-    </div>
-  </div>
-</div>
+<%= render "modul_img_preview" %>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

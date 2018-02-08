@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-  before_action :select_options, only: [:new, :edit]
+  before_action :select_options, only: [:new, :edit, :update]
 
   # GET /products
   # GET /products.json

@@ -36,6 +36,17 @@
     <%= form.select(:sub_categories, grouped_options_for_select(@grouped_options, product.sub_categories), {}, class: "form-control", multiple: true) %>
   </div>
 
+  <% unless product.product_photos.blank? %>
+    <div class="form-group">
+      <%= form.label :uploaded_product_photos %><br>
+      <% @product.product_photos.each do |photo| %>
+        <a href="<%= photo %>" title="<%= photo.file.filename %>" onclick="showPrev(event, this)">
+          <%= image_tag photo.thumb, class: "img-thumbnail" %>  
+        </a>
+      <% end %>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= form.label :product_photos %>
     <%= form.file_field :product_photos, multiple: true, class: "form-control-file" %>
@@ -45,3 +56,5 @@
     <%= form.submit nil, class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<%= render "modul_img_preview" %>

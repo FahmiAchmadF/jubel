@@ -2,7 +2,8 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-@showPrev = (element) -> 
-  $("#imgPreview").attr('src', element.src)
-  $("#exampleModalLabel").text(element.alt)
+@showPrev = (event, element) ->
+  event.preventDefault()
+  $("#imgPreview").attr('src', element.href)
+  $("#exampleModalLabel").text(element.title)
   $("#exampleModal").modal('show')
