@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  mount_uploaders :product_photos, ProductPhotoUploader
   before_save :reformat_input
 
   belongs_to :user
