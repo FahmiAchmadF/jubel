@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :users, path: 'auth'
   root to: 'pages#index'
   
-  resources :products
+  resources :products do
+    collection do
+      get 'search'    
+    end
+  end
   
   namespace :admin do
     resources :categories do    
