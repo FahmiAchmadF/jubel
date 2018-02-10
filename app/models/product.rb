@@ -1,4 +1,11 @@
 class Product < ApplicationRecord
+  mount_uploaders :product_photos, ProductPhotoUploader
+  before_save :reformat_input
+
   belongs_to :user
-  belongs_to :category
+
+  private
+    def reformat_input
+      self.sub_categories = sub_categories.delete_if { |e| e==="" }
+    end
 end

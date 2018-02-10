@@ -2,7 +2,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @product.user %>
+  <%= @product.user.email %>
 </p>
 
 <p>
@@ -17,18 +17,31 @@
 
 <p>
   <strong>Price:</strong>
-  <%= @product.price %>
+  <%= number_to_currency @product.price %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @product.description %>
+  <%= simple_format @product.description %>
 </p>
 
 <p>
-  <strong>Category:</strong>
-  <%= @product.category %>
+  <strong>Categories:</strong>
+  <%= @product.sub_categories %>
 </p>
+
+<p>
+  <strong>Photos</strong>
+</p>
+<% @product.product_photos.each do |photo| %>
+  <a href="<%= photo %>" title="<%= photo.file.filename %>" onclick="showPrev(event, this)">
+    <%= image_tag photo.thumb, class: "img-thumbnail" %> <br>
+  </a>
+<% end %>
+
+<br>
+
+<%= render "modul_img_preview" %>
 
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>

@@ -2,10 +2,31 @@
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
+  
+  <% unless resource.avatar.file.nil? %>
+    <div class="field">
+      <%= image_tag resource.avatar.thumb, class: "img-thumbnail" %>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :change_avatar %>
+    <%= f.file_field :avatar, class: "form-control-file" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    <%= f.email_field :email, autocomplete: "email", disabled: true %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :products
   
   namespace :admin do
-    resources :categories  
+    resources :categories do    
+      resources :sub_categories, except: [:index, :show]
+    end
   end
 end
