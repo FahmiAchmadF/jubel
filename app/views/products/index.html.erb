@@ -5,7 +5,7 @@
 <table class="table table-striped">
   <thead class="thead-dark">
     <tr>
-      <th>User</th>
+      <th>Owner</th>
       <th>Name</th>
       <th>Stock</th>
       <th>Price</th>
@@ -18,7 +18,7 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td><%= product.user.email %></td>
+        <td><%= product.user.name %></td>
         <td><%= product.name %></td>
         <td><%= product.stock %></td>
         <td><%= number_to_currency product.price %></td>
