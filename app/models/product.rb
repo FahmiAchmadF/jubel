@@ -1,4 +1,10 @@
 class Product < ApplicationRecord
+  include PgSearch
+  pg_search_scope :search_products,
+                  against: { name: 'A', sub_categories: 'B' },
+                  using: {
+                    tsearch: { any_word: true }
+                  }
   mount_uploaders :product_photos, ProductPhotoUploader
   before_save :reformat_input
 

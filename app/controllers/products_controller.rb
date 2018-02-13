@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @products = current_user.products
   end
 
   # GET /products/1
@@ -62,6 +62,11 @@ class ProductsController < ApplicationController
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def search
+    @search_param = params[:search]
+    @products = current_user.products.search_products(@search_param)
   end
 
   private

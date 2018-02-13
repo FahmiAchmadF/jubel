@@ -31,15 +31,20 @@
 <p>
   <strong>Photos</strong>
 </p>
-<% @product.product_photos.each do |photo| %>
-  <a href="<%= photo %>" title="<%= photo.file.filename %>" onclick="showPrev(event, this)">
-    <%= image_tag photo.thumb, class: "img-thumbnail" %> <br>
-  </a>
+<% if @product.product_photos.blank? %>
+  <p> no photos </p>
+<% else %>
+  <% @product.product_photos.each do |photo| %>
+    <a href="<%= photo %>" title="<%= photo.file.filename %>" onclick="showPrev(event, this)">
+      <%= image_tag photo.thumb, class: "img-thumbnail" %> <br>
+    </a>
+  <% end %>
 <% end %>
 
 <br>
 
-<%= render "modul_img_preview" %>
+<%= render "products/modul_img_preview" %>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'Buy', '#' %> |
+<%= link_to 'Add to chart', '#' %> |
+<%= link_to 'Back', root_path %>
