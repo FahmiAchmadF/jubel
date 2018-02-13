@@ -66,7 +66,7 @@ class ProductsController < ApplicationController
 
   def search
     @search_param = params[:search]
-    @products = Product.search_products(@search_param)
+    @products = current_user.products.search_products(@search_param)
   end
 
   private

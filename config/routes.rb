@@ -7,7 +7,10 @@ Rails.application.routes.draw do
       get 'search'    
     end
   end
-  
+
+  get 'search', to: 'pages#search'
+  get 'show/:id', to: 'pages#show', as: 'show'
+
   namespace :admin do
     resources :categories do    
       resources :sub_categories, except: [:index, :show]
