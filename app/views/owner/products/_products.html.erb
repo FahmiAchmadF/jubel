@@ -20,9 +20,9 @@
         <td><%= number_to_currency product.price %></td>
         <td><%= product.description %></td>
         <td><%= product.sub_categories %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', owner_product_path(product) %></td>
+        <td><%= link_to 'Edit', edit_owner_product_path(product) %></td>
+        <td><%= link_to 'Destroy', owner_product_path(product), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -30,4 +30,4 @@
 
 <br>
 
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'New Product', new_owner_product_path %>

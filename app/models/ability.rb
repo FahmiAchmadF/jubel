@@ -12,6 +12,7 @@ class Ability
   def admin; end
 
   def user
-    can :manage, Product      
+    can :manage, :product
+    can :manage, :charge
   end
 end

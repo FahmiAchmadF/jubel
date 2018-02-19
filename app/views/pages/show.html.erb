@@ -43,8 +43,8 @@
 
 <br>
 
-<%= render "products/modul_img_preview" %>
+<%= render "modul_img_preview" %>
 
-<%= link_to 'Buy', '#' %> |
+<%= link_to 'Buy', new_charge_path(@product.id) %> |
 <%= link_to 'Add to chart', '#' %> |
 <%= link_to 'Back', root_path %>
